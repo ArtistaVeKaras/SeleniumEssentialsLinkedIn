@@ -13,7 +13,8 @@ public class KeyboardAndMouseInput {
         //scroolToElement();
         //switchWindow();
         //switchToAlert();
-        javaScriptCommands();
+        //javaScriptCommands();
+        dragAndDrop();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -78,7 +79,7 @@ public class KeyboardAndMouseInput {
         alert1.accept();
     }
 
-    //Perfroming JavaScript commands on the alert button
+    //Performing JavaScript commands on the alert button
     public static void javaScriptCommands() throws InterruptedException {
         driver.get("https://formy-project.herokuapp.com/modal");
         WebElement element =driver.findElement(By.id("modal-button"));
@@ -89,5 +90,17 @@ public class KeyboardAndMouseInput {
         js.executeScript("arguments[0].click();",closeButton);
         Thread.sleep(1000);
         driver.quit();
+    }
+
+    //Performing drag and drop
+    public static void dragAndDrop(){
+        driver.manage().window().maximize();
+        driver.get("https://formy-project.herokuapp.com/dragdrop");
+        WebElement image = driver.findElement(By.id("image"));
+        WebElement box = driver.findElement(By.id("box"));
+
+        Actions action = new Actions(driver);
+        action.dragAndDrop(image,box).build().perform();
+
     }
 }

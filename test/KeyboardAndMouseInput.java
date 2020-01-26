@@ -1,8 +1,5 @@
 import driver.util;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 public class KeyboardAndMouseInput {
@@ -15,7 +12,8 @@ public class KeyboardAndMouseInput {
         //autoComplete();
         //scroolToElement();
         //switchWindow();
-        switchToAlert();
+        //switchToAlert();
+        javaScriptCommands();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -70,6 +68,7 @@ public class KeyboardAndMouseInput {
         driver.switchTo().window(originalHandle);
     }
 
+    //Switching to the alert element
     public static void switchToAlert(){
         driver.get("https://formy-project.herokuapp.com/switch-window");
         WebElement alert = driver.findElement(By.id("alert-button"));
@@ -79,4 +78,16 @@ public class KeyboardAndMouseInput {
         alert1.accept();
     }
 
+    //Perfroming JavaScript commands on the alert button
+    public static void javaScriptCommands() throws InterruptedException {
+        driver.get("https://formy-project.herokuapp.com/modal");
+        WebElement element =driver.findElement(By.id("modal-button"));
+        element.click();
+
+        WebElement closeButton =driver.findElement(By.id("close-button"));
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click();",closeButton);
+        Thread.sleep(1000);
+        driver.quit();
+    }
 }

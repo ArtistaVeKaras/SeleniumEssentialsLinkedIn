@@ -1,4 +1,5 @@
 import driver.util;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
@@ -10,10 +11,11 @@ public class KeyboardAndMouseInput {
 
     public static void main(String[] args) throws InterruptedException {
         driver = util.getDriver();
-        fillInForm();
-        autoComplete();
-        scroolToElement();
-        switchWindow();
+        //fillInForm();
+        //autoComplete();
+        //scroolToElement();
+        //switchWindow();
+        switchToAlert();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -67,4 +69,14 @@ public class KeyboardAndMouseInput {
         //swhitches back to the original window
         driver.switchTo().window(originalHandle);
     }
+
+    public static void switchToAlert(){
+        driver.get("https://formy-project.herokuapp.com/switch-window");
+        WebElement alert = driver.findElement(By.id("alert-button"));
+        alert.click();
+
+        Alert alert1 = driver.switchTo().alert();
+        alert1.accept();
+    }
+
 }

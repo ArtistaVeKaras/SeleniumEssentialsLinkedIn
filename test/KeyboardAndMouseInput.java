@@ -13,6 +13,7 @@ public class KeyboardAndMouseInput {
         fillInForm();
         autoComplete();
         scroolToElement();
+        switchWindow();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -50,5 +51,20 @@ public class KeyboardAndMouseInput {
         Thread.sleep(1000);
     }
 
+    //Switching to the original window
+    public static void switchWindow() throws InterruptedException {
+        driver.get("https://formy-project.herokuapp.com/switch-window");
+        WebElement newTabButton= driver.findElement(By.id("new-tab-button"));
+        newTabButton.click();
 
+        String originalHandle = driver.getWindowHandle();
+        for (String handle1: driver.getWindowHandles()){
+
+            driver.switchTo().window(handle1);
+            Thread.sleep(1000);
+        }
+
+        //swhitches back to the original window
+        driver.switchTo().window(originalHandle);
+    }
 }

@@ -25,7 +25,8 @@ public class KeyboardAndMouseInput {
         //dropDown();
         //uploadFile();
         //implicitlyWait();
-        explicitlyWait();
+        //explicitlyWait();
+        WebForm();
 
     }
 
@@ -178,5 +179,23 @@ public class KeyboardAndMouseInput {
         WebDriverWait wait = new WebDriverWait(driver,10);
         WebElement autoCompleteResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pac-item")));
         autoCompleteResult.click();
+    }
+
+    //Complete Web Form
+    public static void WebForm(){
+        driver.get("https://formy-project.herokuapp.com/form");
+        driver.findElement(By.id("first-name")).sendKeys("Claudio");
+        driver.findElement(By.id("last-name")).sendKeys("Correia");
+        driver.findElement(By.id("job-title")).sendKeys("QA Engineer");
+        driver.findElement(By.id("radio-button-1")).click();
+        driver.findElement(By.id("checkbox-1")).click();
+        driver.findElement(By.id("select-menu")).click();
+        driver.findElement(By.cssSelector("option[value='1']")).click();
+        WebElement date = driver.findElement(By.id("datepicker"));
+        date.sendKeys("09/09/9090");
+        date.sendKeys(Keys.RETURN);
+        driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary")).click();
+        driver.quit();
+
     }
 }

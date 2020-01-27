@@ -17,7 +17,8 @@ public class KeyboardAndMouseInput {
         //dragAndDrop();
         //radioButton();
         //datePiker();
-        dropDown();
+        //dropDown();
+        uploadFile();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -135,7 +136,15 @@ public class KeyboardAndMouseInput {
         dropMenu.click();
         WebElement autoComplete = driver.findElement(By.id("autocomplete"));
         autoComplete.click();
+    }
+    //Performing upload file
+    public static void uploadFile(){
+        driver.get("https://formy-project.herokuapp.com/fileupload");
 
+        //File to be uploaded needs to be in the test dir
+        WebElement uploadUploadField = driver.findElement(By.id("file-upload-field"));
+        uploadUploadField.sendKeys("AkiraAv.jpg");
 
+        //driver.quit();
     }
 }

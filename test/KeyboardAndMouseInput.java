@@ -16,7 +16,8 @@ public class KeyboardAndMouseInput {
         //javaScriptCommands();
         //dragAndDrop();
         //radioButton();
-        datePiker();
+        //datePiker();
+        dropDown();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -124,6 +125,17 @@ public class KeyboardAndMouseInput {
         date.sendKeys("01/01/2020");
         date.sendKeys(Keys.RETURN);
         driver.quit();
+    }
+
+    //Performing Dropdown
+    public static void dropDown(){
+        driver.get("https://formy-project.herokuapp.com/dropdown");
+
+        WebElement dropMenu = driver.findElement(By.id("dropdownMenuButton"));
+        dropMenu.click();
+        WebElement autoComplete = driver.findElement(By.id("autocomplete"));
+        autoComplete.click();
+
 
     }
 }

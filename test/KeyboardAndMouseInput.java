@@ -15,7 +15,8 @@ public class KeyboardAndMouseInput {
         //switchToAlert();
         //javaScriptCommands();
         //dragAndDrop();
-        radioButton();
+        //radioButton();
+        datePiker();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -113,5 +114,16 @@ public class KeyboardAndMouseInput {
         radioButton2.click();
         WebElement radioButton3 = driver.findElement(By.cssSelector("input[value='option3']"));
         radioButton3.click();
+    }
+
+    //Performing date picker
+    public static void datePiker(){
+        driver.get("https://formy-project.herokuapp.com/datepicker");
+
+        WebElement date = driver.findElement(By.id("datepicker"));
+        date.sendKeys("01/01/2020");
+        date.sendKeys(Keys.RETURN);
+        driver.quit();
+
     }
 }

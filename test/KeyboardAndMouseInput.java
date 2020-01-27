@@ -1,13 +1,10 @@
 import driver.util;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.concurrent.TimeUnit;
-
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class KeyboardAndMouseInput {
 
@@ -15,7 +12,7 @@ public class KeyboardAndMouseInput {
 
     public static void main(String[] args) throws InterruptedException {
         driver = util.getDriver();
-        //fillInForm();
+        fillInForm();
         //autoComplete();
         //scrollToElement();
         //switchWindow();
@@ -28,10 +25,9 @@ public class KeyboardAndMouseInput {
         //uploadFile();
         //implicitlyWait();
         //explicitlyWait();
-        WebForm();
+        //WebForm();
 
     }
-
     //Open the browser and fill in the form (Task 1)
     public static void fillInForm() throws InterruptedException {
         WebElement first_name = driver.findElement(By.id("name"));

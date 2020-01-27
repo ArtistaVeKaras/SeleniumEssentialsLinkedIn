@@ -10,11 +10,12 @@ public class KeyboardAndMouseInput {
         driver = util.getDriver();
         //fillInForm();
         //autoComplete();
-        //scroolToElement();
+        //scrollToElement();
         //switchWindow();
         //switchToAlert();
         //javaScriptCommands();
-        dragAndDrop();
+        //dragAndDrop();
+        radioButton();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -101,6 +102,16 @@ public class KeyboardAndMouseInput {
 
         Actions action = new Actions(driver);
         action.dragAndDrop(image,box).build().perform();
+    }
 
+    //Performing radio button checks
+    public static void radioButton() throws InterruptedException {
+        driver.get("https://formy-project.herokuapp.com/radiobutton");
+        WebElement radioButton1 = driver.findElement(By.id("radio-button-1"));
+        radioButton1.click();
+        WebElement radioButton2 = driver.findElement(By.cssSelector("input[value='option2']"));
+        radioButton2.click();
+        WebElement radioButton3 = driver.findElement(By.cssSelector("input[value='option3']"));
+        radioButton3.click();
     }
 }

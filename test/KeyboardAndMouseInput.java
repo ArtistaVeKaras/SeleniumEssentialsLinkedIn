@@ -2,6 +2,8 @@ import driver.util;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.concurrent.TimeUnit;
+
 public class KeyboardAndMouseInput {
 
     public static WebDriver driver;
@@ -18,7 +20,8 @@ public class KeyboardAndMouseInput {
         //radioButton();
         //datePiker();
         //dropDown();
-        uploadFile();
+        //uploadFile();
+        implicitlyWait();
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -137,6 +140,7 @@ public class KeyboardAndMouseInput {
         WebElement autoComplete = driver.findElement(By.id("autocomplete"));
         autoComplete.click();
     }
+
     //Performing upload file
     public static void uploadFile(){
         driver.get("https://formy-project.herokuapp.com/fileupload");
@@ -144,7 +148,19 @@ public class KeyboardAndMouseInput {
         //File to be uploaded needs to be in the test dir
         WebElement uploadUploadField = driver.findElement(By.id("file-upload-field"));
         uploadUploadField.sendKeys("AkiraAv.jpg");
-
         //driver.quit();
+    }
+
+    //Implicitly wait
+    public static void implicitlyWait(){
+        driver.get("https://formy-project.herokuapp.com/autocomplete");
+        WebElement autocomplete = driver.findElement(By.id("autocomplete"));
+        autocomplete.sendKeys("87 Oxford Street, London, UK");
+
+        //Using the implicitly wait
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebElement autoCompleteResult = driver.findElement(By.className("pac-item"));
+        autoCompleteResult.click();
+        driver.quit();
     }
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
+import static junit.framework.Assert.assertEquals;
+
 public class KeyboardAndMouseInput {
 
     public static WebDriver driver;
@@ -195,6 +197,13 @@ public class KeyboardAndMouseInput {
         date.sendKeys("09/09/9090");
         date.sendKeys(Keys.RETURN);
         driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary")).click();
+
+        //Use Explicitly wait to wait for the page to load
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement alert = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("alert")));
+
+        String alertText = alert.getText();
+        assertEquals(alertText,"The form was successfully submitted!");
         driver.quit();
 
     }

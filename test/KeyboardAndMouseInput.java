@@ -1,6 +1,9 @@
 import driver.util;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +24,9 @@ public class KeyboardAndMouseInput {
         //datePiker();
         //dropDown();
         //uploadFile();
-        implicitlyWait();
+        //implicitlyWait();
+        explicitlyWait();
+
     }
 
     //Open the browser and fill in the form (Task 1)
@@ -162,5 +167,16 @@ public class KeyboardAndMouseInput {
         WebElement autoCompleteResult = driver.findElement(By.className("pac-item"));
         autoCompleteResult.click();
         driver.quit();
+    }
+
+    //Explicitly Wait
+    public static void explicitlyWait(){
+        driver.get("https://formy-project.herokuapp.com/autocomplete");
+        WebElement autocomplete = driver.findElement(By.id("autocomplete"));
+        autocomplete.sendKeys("87 Oxford Street, London, UK");
+
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebElement autoCompleteResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pac-item")));
+        autoCompleteResult.click();
     }
 }
